@@ -1,6 +1,9 @@
 __pycache__/
 .venv/
 dist/
+.idea/
 *.pyc
 .coverage
 coverage.xml
+Makefile.save
+pyproject.toml.save
