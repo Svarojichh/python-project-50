@@ -9,7 +9,7 @@ def read(result_txt):
 
 
 def file_path(file):
-    path = 'fixtures/'
+    path = 'tests/fixtures/'
     path_constructor = f'{path}{file}'
     return path_constructor
 
