@@ -14,4 +14,5 @@ def file_path(file):
     return path_constructor
 
 
-assert generate_diff(file_path('file1.json'), file_path('file2.json')) == read(file_path('json_result.txt'))
+def test_generate_diff():
+    assert generate_diff(file_path('file1.json'), file_path('file2.json')) == read(file_path('json_result.txt'))
