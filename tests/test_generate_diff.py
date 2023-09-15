@@ -15,4 +15,5 @@ def file_path(file):
 
 
 def test_generate_diff():
-    assert generate_diff(file_path('file1.json'), file_path('file2.json')) == read(file_path('json_result.txt'))
+    assert generate_diff(file_path('file1.json'), file_path('file2.json')) == read(file_path('results.txt'))
+    assert generate_diff(file_path('filepath1.yml'), file_path('filepath2.yml')) == read(file_path('results.txt'))

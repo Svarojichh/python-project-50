@@ -1,9 +1,10 @@
 from json import load
+from gendiff.work_fold.open_files import get_dict_from_files
 
 
 def generate_diff(file1, file2):
-    f1 = load(open(file1))
-    f2 = load(open(file2))
+    f1 = get_dict_from_files(file1)
+    f2 = get_dict_from_files(file2)
     result = {}
     for key1, value1 in f1.items():
         for key2, value2 in f2.items():
