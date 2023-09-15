@@ -1,4 +1,3 @@
-from json import load
 from gendiff.work_fold.open_files import get_dict_from_files
 
 
