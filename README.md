@@ -4,5 +4,7 @@
 ### Code Climate and Test Coverage:
 [![Maintainability](https://api.codeclimate.com/v1/badges/1807152ba86b213ed995/maintainability)](https://codeclimate.com/github/Svarojichh/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1807152ba86b213ed995/test_coverage)](https://codeclimate.com/github/Svarojichh/python-project-50/test_coverage)
-### Asciinema 1:
+### Asciinema merge json files:
 [![asciicast](https://asciinema.org/a/pQZcXSU9OkP8PfkRrrzZ8vrSw.svg)](https://asciinema.org/a/pQZcXSU9OkP8PfkRrrzZ8vrSw)
+### Asciinema merge yaml files:
+[![asciicast](https://asciinema.org/a/UCUxZrCP437ADNXMYaz1zyH4A.svg)](https://asciinema.org/a/UCUxZrCP437ADNXMYaz1zyH4A)
