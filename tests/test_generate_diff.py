@@ -1,4 +1,6 @@
-from gendiff.work_fold.folder import generate_diff
+from gendiff.work_fold.folder import generate_diff, get_sorted_keys_from_files
+from gendiff.formatters.stylish import stylish
+from gendiff.work_fold.open_files import get_dict_from_files
 import pytest
 
 
@@ -14,6 +16,41 @@ def file_path(file):
     return path_constructor
 
 
-def test_generate_diff():
-    assert generate_diff(file_path('file1.json'), file_path('file2.json')) == read(file_path('results.txt'))
-    assert generate_diff(file_path('filepath1.yml'), file_path('filepath2.yml')) == read(file_path('results.txt'))
+file1_data_json = get_dict_from_files(file_path('file1.json'))
+file2_data_json = get_dict_from_files(file_path('file2.json'))
+file1_data_yml = get_dict_from_files(file_path('filepath1.yml'))
+file2_data_yml = get_dict_from_files(file_path('filepath2.yml'))
+
+result_dict_generate_diff_json = generate_diff(file1_data_json, file2_data_json)
+result_dict_generate_diff_yml = generate_diff(file1_data_yml, file2_data_yml)
+
+
+@pytest.fixture
+def result_dict_for_generate_diff():
+    return {'common': {'follow(added)': False, 'setting1': 'Value 1', 'setting2(remote)': 200, 'setting3(remote)': True,
+                       'setting3(added)': None, 'setting4(added)': 'blah blah', 'setting5(added)': {'key5': 'value5'},
+                       'setting6': {'doge': {'wow(remote)': '', 'wow(added)': 'so much'}, 'key': 'value',
+                                    'ops(added)': 'vops'}},
+            'group1': {'baz(remote)': 'bas', 'baz(added)': 'bars', 'foo': 'bar', 'nest(remote)': {'key': 'value'},
+                       'nest(added)': 'str'}, 'group2(remote)': {'abc': 12345, 'deep': {'id': 45}},
+            'group3(added)': {'deep': {'id': {'number': 45}}, 'fee': 100500}}
+
+
+@pytest.fixture
+def result_keys_for_files():
+    return ['common', 'group1', 'group2', 'group3']
+
+
+def test_stylish():
+    assert stylish(result_dict_generate_diff_json) == read(file_path('results.txt'))
+    assert stylish(result_dict_generate_diff_yml) == read(file_path('results.txt'))
+
+
+def test_generate_diff(result_dict_for_generate_diff):
+    assert result_dict_generate_diff_json == result_dict_for_generate_diff
+    assert result_dict_generate_diff_yml == result_dict_for_generate_diff
+
+
+def test_get_sorted_keys_from_files(result_keys_for_files):
+    assert get_sorted_keys_from_files(file1_data_json, file2_data_json) == result_keys_for_files
+    assert get_sorted_keys_from_files(file1_data_yml, file2_data_yml) == result_keys_for_files

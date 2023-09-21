@@ -1,24 +1,24 @@
 from gendiff.work_fold.open_files import get_dict_from_files
 
 
-def generate_diff(file1, file2):
-    f1 = get_dict_from_files(file1)
-    f2 = get_dict_from_files(file2)
-    result = {}
-    for key1, value1 in f1.items():
-        for key2, value2 in f2.items():
-            if key1 == key2 and value1 == value2:
-                result[f'  {key1}'] = value1
-            elif key1 == key2 and value1 != value2:
-                result[f'- {key1}'] = value1
-                result[f'+ {key2}'] = value2
-            if key2 not in f1:
-                result[f'+ {key2}'] = value2
-        if key1 not in f2:
-            result[f'- {key1}'] = value1
-    sorted_result = dict(sorted(result.items(), key=lambda x: x[0][2:]))
-    lines = ["{", '\n'.join(
-        f'  {key}: {str(value).lower() if type(value) is bool else value}'
-        for key, value in sorted_result.items()), "}"]
-    out_text = '\n'.join(lines)
-    return out_text
+def get_sorted_keys_from_files(dict_file1, dict_file2):
+    sorted_key = sorted(set(dict_file1) | set(dict_file2))
+    return sorted_key
+
+
+def generate_diff(dict_file1, dict_file2):
+    result_diff = {}
+    sorted_keys_from_files = get_sorted_keys_from_files(dict_file1, dict_file2)
+    for key in sorted_keys_from_files:
+        if key in dict_file1 and key in dict_file2 and dict_file1[key] == dict_file2[key]:
+            result_diff[key] = dict_file1[key]
+        elif key not in dict_file2:
+            result_diff[f'{key}(remote)'] = dict_file1[key]
+        elif key not in dict_file1:
+            result_diff[f'{key}(added)'] = dict_file2[key]
+        elif isinstance(dict_file1[key], dict) and isinstance(dict_file2[key], dict):
+            result_diff[key] = generate_diff(dict_file1[key], dict_file2[key])
+        elif dict_file1[key] != dict_file2[key]:
+            result_diff[f'{key}(remote)'] = dict_file1[key]
+            result_diff[f'{key}(added)'] = dict_file2[key]
+    return result_diff
