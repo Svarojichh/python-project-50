@@ -8,3 +8,5 @@
 [![asciicast](https://asciinema.org/a/pQZcXSU9OkP8PfkRrrzZ8vrSw.svg)](https://asciinema.org/a/pQZcXSU9OkP8PfkRrrzZ8vrSw)
 ### Asciinema merge yaml files:
 [![asciicast](https://asciinema.org/a/UCUxZrCP437ADNXMYaz1zyH4A.svg)](https://asciinema.org/a/UCUxZrCP437ADNXMYaz1zyH4A)
+### Asciinema stylish format, complex files:
+[![asciicast](https://asciinema.org/a/uTQyYcd4X7IXy6jKVeDcNyzxz.svg)](https://asciinema.org/a/uTQyYcd4X7IXy6jKVeDcNyzxz)
