@@ -3,6 +3,7 @@ from gendiff.formatters.stylish import stylish
 from gendiff.parser import arg_parser
 from gendiff.work_fold.open_files import get_dict_from_files
 from gendiff.formatters.plain import plain
+from gendiff.formatters.json import get_json_format
 
 
 first_file, second_file, format_type = arg_parser()
@@ -16,6 +17,8 @@ def gen_diff(file1, file2, type_format):
         return print(stylish(get_result_dict_from_generate_diff))
     elif type_format == 'plain':
         return print(plain(get_result_dict_from_generate_diff))
+    elif type_format == 'json':
+        return print(get_json_format(get_result_dict_from_generate_diff))
 
 
 def result_output():

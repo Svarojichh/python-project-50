@@ -1,6 +1,7 @@
 from gendiff.work_fold.folder import generate_diff, get_sorted_keys_from_files
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
+from gendiff.formatters.json import get_json_format
 from gendiff.work_fold.open_files import get_dict_from_files
 import pytest
 
@@ -50,6 +51,11 @@ def test_stylish():
 def test_plain():
     assert plain(result_dict_generate_diff_json) == read(file_path('result_plain.txt'))
     assert plain(result_dict_generate_diff_yml) == read(file_path('result_plain.txt'))
+
+
+def test_get_json_format():
+    assert get_json_format(result_dict_generate_diff_json) == read(file_path('result_json.txt'))
+    assert get_json_format(result_dict_generate_diff_yml) == read(file_path('result_json.txt'))
 
 
 def test_generate_diff(result_dict_for_generate_diff):
