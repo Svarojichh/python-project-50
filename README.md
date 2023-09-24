@@ -12,3 +12,5 @@
 [![asciicast](https://asciinema.org/a/uTQyYcd4X7IXy6jKVeDcNyzxz.svg)](https://asciinema.org/a/uTQyYcd4X7IXy6jKVeDcNyzxz)
 ### Asciinema plain format:
 [![asciicast](https://asciinema.org/a/ipSezX2NWp8JywSITz5k1W8PF.svg)](https://asciinema.org/a/ipSezX2NWp8JywSITz5k1W8PF)
+### Asciinema json format:
+[![asciicast](https://asciinema.org/a/1LR4i34lqlM4uwIPgkEkgNetX.svg)](https://asciinema.org/a/1LR4i34lqlM4uwIPgkEkgNetX)
