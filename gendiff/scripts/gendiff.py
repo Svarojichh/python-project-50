@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-from gendiff.data_output import generate_diff
+from gendiff.data_output import result_output
 
 
 def main():
-    generate_diff()
+    result_output()
 
 
 if __name__ == '__main__':
