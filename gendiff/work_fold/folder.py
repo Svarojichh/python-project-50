@@ -1,12 +1,12 @@
 def get_sorted_keys_from_files(dict_file1, dict_file2):
-    sorted_key = sorted(set(dict_file1) | set(dict_file2))
-    return sorted_key
+    sort_keys = sorted(set(dict_file1) | set(dict_file2))
+    return sort_keys
 
 
 def generate_diff(dict_file1, dict_file2):
     result_diff = {}
-    sorted_keys_from_files = get_sorted_keys_from_files(dict_file1, dict_file2)
-    for key in sorted_keys_from_files:
+    sorted_keys = get_sorted_keys_from_files(dict_file1, dict_file2)
+    for key in sorted_keys:
         if (key in dict_file1 and key in dict_file2
                 and dict_file1[key] == dict_file2[key]):
             result_diff[key] = dict_file1[key]

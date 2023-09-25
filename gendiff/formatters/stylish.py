@@ -1,7 +1,7 @@
 import itertools
 
 
-def stylish(current_data, depth=0):
+def get_stylish_format(current_data, depth=0):
     replacer = ' '
     spaces_count = 4
     lines = []
@@ -26,6 +26,6 @@ def stylish(current_data, depth=0):
             deep_indent = replacer * deep_indent_size
             key_output = key
         lines.append(f'{deep_indent}{key_output}:'
-                     f' {stylish(value, deep_indent_size)}')
+                     f' {get_stylish_format(value, deep_indent_size)}')
     result = itertools.chain("{", lines, [current_indent + "}"])
     return '\n'.join(result)

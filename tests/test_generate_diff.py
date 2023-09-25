@@ -1,6 +1,6 @@
 from gendiff.work_fold.folder import generate_diff, get_sorted_keys_from_files
-from gendiff.formatters.stylish import stylish
-from gendiff.formatters.plain import plain
+from gendiff.formatters.stylish import get_stylish_format
+from gendiff.formatters.plain import get_plain_format
 from gendiff.formatters.json import get_json_format
 from gendiff.work_fold.open_files import get_dict_from_files
 import pytest
@@ -28,7 +28,15 @@ result_dict_generate_diff_yml = generate_diff(file1_data_yml, file2_data_yml)
 
 
 @pytest.fixture
-def result_dict_for_generate_diff():
+def result_output_from_files():
+    return {'common': {'setting1': 'Value 1', 'setting2': 200, 'setting3': True,
+                       'setting6': {'key': 'value', 'doge': {'wow': ''}}},
+            'group1': {'baz': 'bas', 'foo': 'bar', 'nest': {'key': 'value'}},
+            'group2': {'abc': 12345, 'deep': {'id': 45}}}
+
+
+@pytest.fixture
+def result_dict_from_generate_diff():
     return {'common': {'follow(added)': False, 'setting1': 'Value 1', 'setting2(remote)': 200, 'setting3(remote)': True,
                        'setting3(added)': None, 'setting4(added)': 'blah blah', 'setting5(added)': {'key5': 'value5'},
                        'setting6': {'doge': {'wow(remote)': '', 'wow(added)': 'so much'}, 'key': 'value',
@@ -43,14 +51,14 @@ def result_keys_for_files():
     return ['common', 'group1', 'group2', 'group3']
 
 
-def test_stylish():
-    assert stylish(result_dict_generate_diff_json) == read(file_path('results.txt'))
-    assert stylish(result_dict_generate_diff_yml) == read(file_path('results.txt'))
+def test_get_stylish_format():
+    assert get_stylish_format(result_dict_generate_diff_json) == read(file_path('results.txt'))
+    assert get_stylish_format(result_dict_generate_diff_yml) == read(file_path('results.txt'))
 
 
-def test_plain():
-    assert plain(result_dict_generate_diff_json) == read(file_path('result_plain.txt'))
-    assert plain(result_dict_generate_diff_yml) == read(file_path('result_plain.txt'))
+def test_get_plain_format():
+    assert get_plain_format(result_dict_generate_diff_json) == read(file_path('result_plain.txt'))
+    assert get_plain_format(result_dict_generate_diff_yml) == read(file_path('result_plain.txt'))
 
 
 def test_get_json_format():
@@ -58,11 +66,16 @@ def test_get_json_format():
     assert get_json_format(result_dict_generate_diff_yml) == read(file_path('result_json.txt'))
 
 
-def test_generate_diff(result_dict_for_generate_diff):
-    assert result_dict_generate_diff_json == result_dict_for_generate_diff
-    assert result_dict_generate_diff_yml == result_dict_for_generate_diff
+def test_generate_diff(result_dict_from_generate_diff):
+    assert result_dict_generate_diff_json == result_dict_from_generate_diff
+    assert result_dict_generate_diff_yml == result_dict_from_generate_diff
 
 
 def test_get_sorted_keys_from_files(result_keys_for_files):
     assert get_sorted_keys_from_files(file1_data_json, file2_data_json) == result_keys_for_files
     assert get_sorted_keys_from_files(file1_data_yml, file2_data_yml) == result_keys_for_files
+
+
+def test_get_dict_from_files(result_output_from_files):
+    assert file1_data_json == result_output_from_files
+    assert file1_data_yml == result_output_from_files

@@ -11,7 +11,7 @@ def format_values(value):
     return result_value
 
 
-def plain(current_data, property_path=''):
+def get_plain_format(current_data, property_path=''):
     lines = []
     keys_iter = iter(current_data.items())
     for key, value in keys_iter:
@@ -33,5 +33,5 @@ def plain(current_data, property_path=''):
                          f"was added with value: {current_value1}")
         elif current_value1 == '[complex value]':
             new_property_path = property_path + key + '.'
-            lines.append(f'{plain(value, new_property_path)}')
+            lines.append(f'{get_plain_format(value, new_property_path)}')
     return '\n'.join(lines)
