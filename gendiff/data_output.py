@@ -6,7 +6,7 @@ from gendiff.formatters.plain import get_plain_format
 from gendiff.formatters.json import get_json_format
 
 
-def get_format_gen_diff(file1, file2, type_format):
+def get_format_gen_diff(file1, file2, type_format='stylish'):
     result_dict_from_gen_diff = gen_diff(file1, file2)
     if type_format == 'stylish':
         return get_stylish_format(result_dict_from_gen_diff)
