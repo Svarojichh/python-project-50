@@ -16,8 +16,8 @@ def get_plain_format(current_data, property_path=''):
     keys_iter = iter(current_data.items())
     for key, value in keys_iter:
         current_value1 = format_values(value)
-        if ('(remote)' in key and
-                f'{key.removesuffix("(remote)")}(added)'
+        if ('(remote)' in key
+                and f'{key.removesuffix("(remote)")}(added)'
                 in current_data.keys()):
             key, value = next(keys_iter)
             current_value2 = format_values(value)
