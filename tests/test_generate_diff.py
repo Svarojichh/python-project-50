@@ -1,4 +1,4 @@
-from gendiff.work_fold.folder import gen_diff, get_sorted_keys_from_files
+from gendiff.work_fold.generator import gen_diff, get_sorted_keys_from_files
 from gendiff.formatters.stylish import get_stylish_format
 from gendiff.formatters.plain import get_plain_format
 from gendiff.formatters.json import get_json_format

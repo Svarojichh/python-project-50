@@ -1,4 +1,4 @@
-from gendiff.work_fold.folder import gen_diff
+from gendiff.work_fold.generator import gen_diff
 from gendiff.formatters.stylish import get_stylish_format
 from gendiff.parser import arg_parser
 from gendiff.work_fold.open_files import get_dict_from_files

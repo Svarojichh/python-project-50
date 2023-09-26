@@ -11,27 +11,27 @@ def format_values(value):
     return result_value
 
 
-def get_plain_format(current_data, property_path=''):
+def get_plain_format(data, path=''):
     lines = []
-    keys_iter = iter(current_data.items())
-    for key, value in keys_iter:
-        current_value1 = format_values(value)
+    iter_keys = iter(data.items())
+    for key, value in iter_keys:
+        current_value = format_values(value)
         if ('(remote)' in key
                 and f'{key.removesuffix("(remote)")}(added)'
-                in current_data.keys()):
-            key, value = next(keys_iter)
-            current_value2 = format_values(value)
+                in data.keys()):
+            key, value = next(iter_keys)
+            current_value1 = format_values(value)
             key = key.removesuffix("(added)")
-            lines.append(f"Property '{property_path}{key}' was updated. "
-                         f"From {current_value1} to {current_value2}")
+            lines.append(f"Property '{path}{key}' was updated. "
+                         f"From {current_value} to {current_value1}")
         elif '(remote)' in key:
             key = key.removesuffix("(remote)")
-            lines.append(f"Property '{property_path}{key}' was removed")
+            lines.append(f"Property '{path}{key}' was removed")
         elif '(added)' in key:
             key = key.removesuffix("(added)")
-            lines.append(f"Property '{property_path}{key}' "
-                         f"was added with value: {current_value1}")
-        elif current_value1 == '[complex value]':
-            new_property_path = property_path + key + '.'
+            lines.append(f"Property '{path}{key}' "
+                         f"was added with value: {current_value}")
+        elif current_value == '[complex value]':
+            new_property_path = path + key + '.'
             lines.append(f'{get_plain_format(value, new_property_path)}')
     return '\n'.join(lines)
