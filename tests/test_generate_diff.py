@@ -84,4 +84,4 @@ def test_get_format_file():
     path_to_file_json = 'https://something.com/json-data.json'
     path_to_file_yml = 'https://something.com/yml-data.yml'
     assert get_format_file(path_to_file_json) == 'json'
-    assert  get_format_file(path_to_file_yml) == 'yml'
+    assert get_format_file(path_to_file_yml) == 'yml'
