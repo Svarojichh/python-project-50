@@ -75,6 +75,13 @@ def test_get_sorted_keys_from_files(result_keys_for_files):
     assert get_sorted_keys_from_files(file1_data_yml, file2_data_yml) == result_keys_for_files
 
 
-def test_get_dict_from_files(result_output_from_files):
+def test_parse_data(result_output_from_files):
     assert file1_data_json == result_output_from_files
     assert file1_data_yml == result_output_from_files
+
+
+def test_get_format_file():
+    path_to_file_json = 'https://something.com/json-data.json'
+    path_to_file_yml = 'https://something.com/yml-data.yml'
+    assert get_format_file(path_to_file_json) == 'json'
+    assert  get_format_file(path_to_file_yml) == 'yml'
