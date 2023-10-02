@@ -79,7 +79,7 @@ def test_parse_data(result_output_from_files):
     assert file1_data_json == result_output_from_files
     assert file1_data_yml == result_output_from_files
     with pytest.raises(ValueError):
-        result = parse_data(read_data(file_path('file1.json')), 'txt')
+        parse_data(read_data(file_path('file1.json')), 'txt')
 
 
 def test_get_format_file():
